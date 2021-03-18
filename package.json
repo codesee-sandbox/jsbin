@@ -20,7 +20,7 @@
   "scripts": {
     "start": "(sleep 2 && open http://localhost:3000) & ./bin/jsbin",
     "test": "node_modules/mocha/bin/_mocha -t 25000 --ui bdd test/unit/**/*.test.js",
-    "build": "grunt build",
+    "build": "grunt build --force",
     ":install": "build/install.js",
     "postinstall": "grunt build",
     "// disabled": " && npm run selenium:install",
@@ -83,13 +83,19 @@
     "validator": "^3.16.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@codesee/babel-plugin-instrument": "^0.13.1",
+    "@codesee/tracker": "^0.13.1",
     "glob": "^7.0.5",
     "grunt": "^1.0.1",
+    "grunt-babel": "^8.0.0",
     "grunt-cli": "~0.1.11",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-uglify": "^2.3.0",
     "hbs-utils": "0.0.3",
+    "load-grunt-tasks": "^5.1.0",
     "mocha": "~1.21.4",
     "proxyquire": "^1.7.10",
     "should": "~1.2.2",

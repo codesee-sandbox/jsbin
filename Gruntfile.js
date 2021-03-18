@@ -57,7 +57,22 @@ module.exports = function (grunt) {
     embed:     'public/js/embed.min.js',
   };
 
+  var scriptsRelativeObjects = scripts.app.reduce(function (obj, script) {
+    let scriptString = "public" + script;
+    obj[scriptString] = scriptString;
+    return obj;
+  }, {});
+
   var config = {
+    babel: {
+      options: {
+        presets: ["@babel/preset-env"],
+        plugins: [["@codesee/instrument", { hosted: true }]],
+      },
+      dist: {
+        files: scriptsRelativeObjects,
+      },
+    },
     pkg: pkg,
     scriptsRelative: scripts.app.map(function (script) {
       return 'public' + script;
@@ -153,12 +168,13 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig(config);
 
+  grunt.loadNpmTasks("grunt-babel");
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   // Default task.
-  grunt.registerTask('build', ['concat', 'uglify']);
+  grunt.registerTask("build", ["babel:dist", "concat", "uglify"]);
   grunt.registerTask('addons', ['uglify:addons']);
   grunt.registerTask('default', ['jshint']);
 
