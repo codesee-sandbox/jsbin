@@ -85,8 +85,8 @@
   "devDependencies": {
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
-    "@codesee/babel-plugin-instrument": "^0.13.1",
-    "@codesee/tracker": "^0.13.1",
+    "@codesee/babel-plugin-instrument": "^0.33.2",
+    "@codesee/tracker": "^0.33.2",
     "glob": "^7.0.5",
     "grunt": "^1.0.1",
     "grunt-babel": "^8.0.0",
